@@ -25,9 +25,13 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.process'); 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route untuk dashboard Teknisi
-Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi/dashboard', function () {
-    return view('Teknisi.dashboard');
-})->name('teknisi.dashboard');
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/dashboard', function () {
+    return view('teknisi_provisioning.dashboard');
+})->name('teknisi_provisioning.dashboard');
+
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/kegiatan', function () {
+    return view('teknisi_provisioning.kegiatan');
+})->name('teknisi_provisioning.kegiatan');
 
 // Route untuk dashboard Admin
 Route::middleware(['auth', 'role:Admin'])->get('/admin/dashboard', function () {
