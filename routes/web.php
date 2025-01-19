@@ -39,6 +39,17 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin/dashboard', function () {
 })->name('admin.dashboard');
 
 // Route Assurance
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/dashboard', function () {
+    return view('teknisi_assurance.dashboard');
+})->name('teknisi_assurance.dashboard');
+
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/kegiatan', function () {
+    return view('teknisi_assurance.kegiatan');
+})->name('teknisi_assurance.kegiatan');
+
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/riwayat', function () {
+    return view('teknisi_assurance.riwayat');
+})->name('teknisi_assurance.riwayat');
 
 Route::middleware(['auth', 'role:Admin'])->get('/admin/assurance', [AssuranceController::class, 'index'])->name('assurance.index');
 
