@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\KegiatanModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AssuranceController;
 use App\Http\Controllers\Admin\ManajemenAkunPenggunaController;
@@ -44,12 +46,25 @@ Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/dashboard',
 })->name('teknisi_assurance.dashboard');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/kegiatan', function () {
-    return view('teknisi_assurance.kegiatan');
+    $data=KegiatanModel::all();
+    return view('teknisi_assurance.kegiatan',compact('data'));
 })->name('teknisi_assurance.kegiatan');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/riwayat', function () {
     return view('teknisi_assurance.riwayat');
 })->name('teknisi_assurance.riwayat');
+
+Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_assurance/tambahkegiatan', function (Request $request) {
+    KegiatanModel::create([
+        'no_order' => $request->no_order,
+        'jenis_wo' => $request->jenis_wo,
+        'status' => $request->status,
+        'status_approve' => 'Menunggu',
+    ]);
+
+    return redirect()->route('teknisi_assurance.kegiatan')
+             ->with('message', 'Data Berhasil ditambahkan.');
+})->name('teknisi_assurance.tambahkegiatan');
 
 Route::middleware(['auth', 'role:Admin'])->get('/admin/assurance', [AssuranceController::class, 'index'])->name('assurance.index');
 
