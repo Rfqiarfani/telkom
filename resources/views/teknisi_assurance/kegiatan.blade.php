@@ -27,15 +27,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="/teknisi_assurance/tambahkegiatan" method="post">
+      @csrf
       <div class="modal-body">
-      <form>
   <div class="form-group">
     <label for="exampleInputEmail1">No Order</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input name='no_order'type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Jenis WO</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select name= 'jenis_wo'class="form-control" id="exampleFormControlSelect1">
       <option>pilih jenis wo</option>
       <option>digipos</option>
       <option>dismant</option>
@@ -49,20 +50,20 @@
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Status</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select name= 'status'class="form-control" id="exampleFormControlSelect1">
       <option>pilih status</option>
       <option>sukses</option>
-      <option>pending</option>
       <option>kendala</option>
     </select>
 
   </div>
-</form>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -79,6 +80,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                          @foreach ($data as $value)
+                          <tr>
+                                <th>{{$value->no_order}}</th>
+                                <th>{{$value->jenis_wo}}</th>
+                                <th>
+                                  @if ($value->status=="sukses")
+                                  <span class="badge badge-pill badge-success">{{$value->status}}</span>
+                                  @elseif ($value->status=="kendala")
+                                  <span class="badge badge-pill badge-danger">{{$value->status}}</span>
+                                  @endif
+                                </th>
+                                <th>{{$value->status_approve}}</th>
+                                <th></th>
+                            </tr>
+                          @endforeach
                         </tbody>
                     </table>
                 </div>

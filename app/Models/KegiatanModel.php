@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class KegiatanModel extends Model
 {
     use HasFactory;
-    protected $primarykey = 'id_kegiatan';
+
+    protected $primaryKey ='id_kegiatan';
     public $timestamps = false;
     protected $table = 'kegiatan';
     protected $fillable = [
@@ -17,5 +18,4 @@ class KegiatanModel extends Model
         'status',
         'status_approve',
     ];
-
 }
