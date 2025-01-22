@@ -96,3 +96,19 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin/manajemen-data-aktivitas'
 
 // Rute untuk Manajemen Profil Perusahaan
 Route::middleware(['auth', 'role:Admin'])->get('/admin/manajemen-profil-perusahaan', [ManajemenProfilPerusahaanController::class, 'index'])->name('manajemen-profil-perusahaan.index');
+// admin assurance
+
+// Route untuk dashboard Admin
+Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/dashboard', function () {
+    return view('admin_assurance.dashboard');
+})->name('admin_assurance.dashboard');
+
+// Route untuk dashboard Admin
+Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/management_akun_pengguna', function () {
+    return view('admin_assurance.management_akun_pengguna');
+})->name('admin_assurance.management_akun_pengguna');
+
+// Route untuk dashboard Admin
+Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/management_data_aktivitas', function () {
+    return view('admin_assurance.management_data_aktivitas');
+})->name('admin_assurance.management_data_aktivitas');
