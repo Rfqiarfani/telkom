@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\KegiatanModel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AssuranceController;
 use App\Http\Controllers\Admin\ManajemenAkunPenggunaController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\Admin\ProvisioningController;
 use App\Http\Controllers\Admin\ExportLaporanController;
 use App\Http\Controllers\Admin\ManajemenDataAktivitasController;
 use App\Http\Controllers\Admin\ManajemenProfilPerusahaanController;
-
+use Illuminate\Http\Request;
 
 // Landing page untuk login (teknisi)
 Route::get('/', function () {
@@ -24,14 +25,30 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.process'); 
 // Route untuk logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route untuk dashboard Teknisi
+// Route untuk dashboard Teknisi provisioning
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/dashboard', function () {
     return view('teknisi_provisioning.dashboard');
 })->name('teknisi_provisioning.dashboard');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/kegiatan', function () {
-    return view('teknisi_provisioning.kegiatan');
+    $data=KegiatanModel::all();
+    return view('teknisi_provisioning.kegiatan',compact("data"));
 })->name('teknisi_provisioning.kegiatan');
+
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/riwayat', function () {
+    return view('teknisi_provisioning.riwayat');
+})->name('teknisi_provisioning.riwayat');
+
+Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/tambahkegiatan', function (Request $request) {
+    KegiatanModel::create([
+        'no_order' => $request->no_order,
+        'jenis_wo' => $request->jenis_wo,
+        'status' => $request->status,
+        'status_approve' => "Menunggu",
+    ]);
+    return redirect()->route('teknisi_provisioning.kegiatan')
+             ->with('message', 'Data Berhasil ditambahkan.');
+})->name('teknisi_provisioning.tambahkegiatan');
 
 // Route untuk dashboard Admin
 Route::middleware(['auth', 'role:Admin'])->get('/admin/dashboard', function () {

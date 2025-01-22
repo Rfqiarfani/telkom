@@ -51,8 +51,8 @@
                     <span>Kegiatan</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('assurance.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('assurance.index') }}">
+            <li class="nav-item {{ request()->routeIs('teknisi_provisioning.riwayat') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('teknisi_provisioning.riwayat') }}">
                     <i class="fas fa-check fa-fw"></i>
                     <span>Riwayat</span>
                 </a>
