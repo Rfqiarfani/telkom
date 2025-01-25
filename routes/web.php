@@ -74,17 +74,17 @@ Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_assurance/tambahkegi
     KegiatanModel::create([
         'no_order' => $request->no_order,
         'jenis_wo' => $request->jenis_wo,
-        'status' => $request->status,
+        'status' => $request->status, 
         'status_approve' => 'Menunggu',
     ]);
 
     return redirect()->route('teknisi_assurance.kegiatan')
-             ->with('message', 'Data Berhasil ditambahkan.');
+             ->with('message', 'Data Berhasil ditambahkan.');
 })->name('teknisi_assurance.tambahkegiatan');
-
+// assurance punya
 Route::middleware(['auth', 'role:Admin'])->get('/admin/assurance', [AssuranceController::class, 'index'])->name('assurance.index');
-
-
+Route::middleware(['auth', 'role:Admin'])->post('/admin/setujukegiatanassurance',[AssuranceController::class, 'setujukegiatan'])->name('assurance.setujukegiatan');
+Route::middleware(['auth', 'role:Admin'])->post('/admin/tolakkegiatanassurance',[AssuranceController::class, 'tolakkegiatan'])->name('assurance.tolakkegiatan');
 // Rute untuk manajemen akun Pengguna
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
