@@ -13,9 +13,6 @@
             <div class="card-body">
                 <p>Di sini Anda dapat mengelola Riwayat anda.</p>
                 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
-  Tambah Riwayat
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -46,6 +46,7 @@
       <option>orbit</option>
       <option>pda</option>
       <option>stb mig</option>
+      <option>datin</option>
     </select>
   </div>
   <div class="form-group">
@@ -94,7 +95,32 @@
                                   @endif
                                 </th>
                                 <th>{{$value->status_approve}}</th>
-                                <th></th>
+                                <th>
+                                  <button data-toggle="modal" data-target="#hapusModal{{$value->id_kegiatan}}" class="btn btn-danger btn-sm">hapus</button>
+                                  <div class="modal fade" id="hapusModal{{$value->id_kegiatan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">konfirmasi hapus kegiatan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/teknisi_provisioning/hapuskegiatan" method="post">
+        @csrf 
+      <div class="modal-body">
+        apakah anda yakin ingin menghapus kegiatan ini
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-success">Ya</button>
+        <input type="hidden" name="id_kegiatan" value="{{$value->id_kegiatan}}">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+                                </th>
                             </tr>
                           @endforeach
                         </tbody>

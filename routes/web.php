@@ -32,7 +32,7 @@ Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/dashboar
 })->name('teknisi_provisioning.dashboard');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/kegiatan', function () {
-    $data=KegiatanModel::all();
+    $data=KegiatanModel::where("jenis","Provisioning")->get();
     return view('teknisi_provisioning.kegiatan',compact("data"));
 })->name('teknisi_provisioning.kegiatan');
 
@@ -46,10 +46,19 @@ Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/tambahk
         'jenis_wo' => $request->jenis_wo,
         'status' => $request->status,
         'status_approve' => "Menunggu",
+        'jenis' => "Provisioning",
     ]);
     return redirect()->route('teknisi_provisioning.kegiatan')
              ->with('message', 'Data Berhasil ditambahkan.');
 })->name('teknisi_provisioning.tambahkegiatan');
+
+Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/hapuskegiatan', function (Request $request) {
+    $kegiatan=KegiatanModel::find($request->id_kegiatan);
+    $kegiatan->delete();
+
+    return redirect()->route('teknisi_provisioning.kegiatan')
+             ->with('message', 'Data Berhasil dihapus.');
+})->name('teknisi_provisioning.hapuskegiatan');
 
 // Route untuk dashboard Admin
 Route::middleware(['auth', 'role:Admin'])->get('/admin/dashboard', function () {
