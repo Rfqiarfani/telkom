@@ -17,5 +17,6 @@ class KegiatanModel extends Model
         'jenis_wo',
         'status',
         'status_approve',
+        'jenis',
     ];
 }

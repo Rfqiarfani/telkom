@@ -11,7 +11,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Daftar Kegiatan Anda</h6>
             </div>
             <div class="card-body">
-                <p>Di sini Anda dapat mengelola kegiatan anda.</p>
+                <p>Di Sini Anda Dapat Mengelola Kegiatan Anda.</p>
                 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
   Tambah Kegiatan
@@ -92,7 +92,32 @@
                                   @endif
                                 </th>
                                 <th>{{$value->status_approve}}</th>
-                                <th></th>
+                                <th>
+                                  <button data-toggle="modal" data-target="#hapusModal{{$value->id_kegiatan}}"class="btn btn-danger btn-sm">hapus</button>
+                                  <div class="modal fade" id="hapusModal{{$value->id_kegiatan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Kegiatan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/teknisi_assurance/hapuskegiatan" method="post">
+      @csrf
+      <div class="modal-body">
+        Apakah Anda Yakin Menghapus Kegiatan Ini?
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn btn-success">Ya</button>
+        <button type="close" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+        <input type="hidden" name="id_kegiatan" value="{{$value->id_kegiatan}}">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+                                </th>
                             </tr>
                           @endforeach
                         </tbody>

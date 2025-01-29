@@ -13,10 +13,6 @@
             <div class="card-body">
                 <p>Di sini Anda dapat mengelola Riwayat anda.</p>
                 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
-  Tambah Riwayat
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -37,14 +33,11 @@
     <label for="exampleInputPassword1">Jenis WO</label>
     <select class="form-control" id="exampleFormControlSelect1">
       <option>pilih jenis wo</option>
-      <option>digipos</option>
-      <option>dismant</option>
-      <option>ekspan</option>
-      <option>indibiz</option>
-      <option>mo</option>
-      <option>orbit</option>
-      <option>pda</option>
-      <option>stb mig</option>
+      <option>saputra</option>
+      <option>madani</option>
+      <option>adam</option>
+      <option>zaini</option>
+      <option>amat</option>
     </select>
   </div>
   <div class="form-group">
@@ -52,7 +45,6 @@
     <select class="form-control" id="exampleFormControlSelect1">
       <option>pilih status</option>
       <option>sukses</option>
-      <option>pending</option>
       <option>kendala</option>
     </select>
 
