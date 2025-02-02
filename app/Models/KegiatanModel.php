@@ -18,5 +18,8 @@ class KegiatanModel extends Model
         'status',
         'status_approve',
         'jenis',
+        'tanggal',
+        'id_user',
+        'point'
     ];
 }
