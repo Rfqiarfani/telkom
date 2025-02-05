@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Teknisi_assurance\AssuranceKegiatanController;
 use App\Http\Controllers\Teknisi_provisioning\KegiatanController;
 use App\Http\Controllers\Teknisi_provisioning\ProvisioningKegiatanController;
 use App\Models\KegiatanModel;
@@ -53,35 +54,15 @@ Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/dashboard',
     return view('teknisi_assurance.dashboard');
 })->name('teknisi_assurance.dashboard');
 
-Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/kegiatan', function () {
-    $data=KegiatanModel::where('jenis','Assurance')->get();
-    return view('teknisi_assurance.kegiatan',compact('data'));
-})->name('teknisi_assurance.kegiatan');
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/kegiatan',[AssuranceKegiatanController::class,'tampilkegiatan'] )->name('teknisi_assurance.kegiatan');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/riwayat', function () {
     return view('teknisi_assurance.riwayat');
 })->name('teknisi_assurance.riwayat');
 
-Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_assurance/tambahkegiatan', function (Request $request) {
-    KegiatanModel::create([
-        'no_order' => $request->no_order,
-        'jenis_wo' => $request->jenis_wo,
-        'status' => $request->status, 
-        'status_approve' => 'Menunggu',
-        'jenis' => 'Assurance',
-    ]);
+Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_assurance/tambahkegiatan',[AssuranceKegiatanController::class,'tambahkegiatan'] )->name('teknisi_assurance.tambahkegiatan');
 
-    return redirect()->route('teknisi_assurance.kegiatan')
-             ->with('message', 'Data Berhasil ditambahkan.');
-})->name('teknisi_assurance.tambahkegiatan');
-
-Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_assurance/hapuskegiatan', function (Request $request) {
-    $kegiatan=KegiatanModel::find($request->id_kegiatan);
-    $kegiatan->delete();
-
-    return redirect()->route('teknisi_assurance.kegiatan')
-             ->with('message', 'Data Berhasil dihapus.');
-})->name('teknisi_assurance.hapuskegiatan');
+Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_assurance/hapuskegiatan', [AssuranceKegiatanController::class,'hapuskegiatan'])->name('teknisi_assurance.hapuskegiatan');
 // assurance punya
 Route::middleware(['auth', 'role:Admin'])->get('/admin/assurance', [AssuranceController::class, 'index'])->name('assurance.index');
 Route::middleware(['auth', 'role:Admin'])->post('/admin/setujukegiatanassurance',[AssuranceController::class, 'setujukegiatan'])->name('assurance.setujukegiatan');
