@@ -72,7 +72,6 @@
                                 <th>Jenis WO</th>
                                 <th>Status</th>
                                 <th>Status Approve</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

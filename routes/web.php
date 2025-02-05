@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Teknisi_provisioning\KegiatanController;
+use App\Http\Controllers\Teknisi_provisioning\ProvisioningKegiatanController;
 use App\Models\KegiatanModel;
 
 use Illuminate\Support\Facades\Route;
@@ -31,34 +33,15 @@ Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/dashboar
     return view('teknisi_provisioning.dashboard');
 })->name('teknisi_provisioning.dashboard');
 
-Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/kegiatan', function () {
-    $data=KegiatanModel::where("jenis","Provisioning")->get();
-    return view('teknisi_provisioning.kegiatan',compact("data"));
-})->name('teknisi_provisioning.kegiatan');
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/kegiatan', [ProvisioningKegiatanController::class,'tampilkegiatan'])->name('teknisi_provisioning.kegiatan');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/riwayat', function () {
     return view('teknisi_provisioning.riwayat');
 })->name('teknisi_provisioning.riwayat');
 
-Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/tambahkegiatan', function (Request $request) {
-    KegiatanModel::create([
-        'no_order' => $request->no_order,
-        'jenis_wo' => $request->jenis_wo,
-        'status' => $request->status,
-        'status_approve' => "Menunggu",
-        'jenis' => "Provisioning",
-    ]);
-    return redirect()->route('teknisi_provisioning.kegiatan')
-             ->with('message', 'Data Berhasil ditambahkan.');
-})->name('teknisi_provisioning.tambahkegiatan');
+Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/tambahkegiatan',[ProvisioningKegiatanController::class,'tambahkegiatan'] )->name('teknisi_provisioning.tambahkegiatan');
 
-Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/hapuskegiatan', function (Request $request) {
-    $kegiatan=KegiatanModel::find($request->id_kegiatan);
-    $kegiatan->delete();
-
-    return redirect()->route('teknisi_provisioning.kegiatan')
-             ->with('message', 'Data Berhasil dihapus.');
-})->name('teknisi_provisioning.hapuskegiatan');
+Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/hapuskegiatan', [ProvisioningKegiatanController::class,'hapuskegiatan'])->name('teknisi_provisioning.hapuskegiatan');
 
 // Route untuk dashboard Admin
 Route::middleware(['auth', 'role:Admin'])->get('/admin/dashboard', function () {
