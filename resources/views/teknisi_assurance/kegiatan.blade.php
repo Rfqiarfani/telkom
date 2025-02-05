@@ -30,6 +30,10 @@
       <form action="/teknisi_assurance/tambahkegiatan" method="post">
       @csrf
       <div class="modal-body">
+      <div class="form-group">
+    <label for="exampleInputEmail1">Tanggal</label>
+    <input name='tanggal'type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
   <div class="form-group">
     <label for="exampleInputEmail1">No Order</label>
     <input name='no_order'type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -38,7 +42,7 @@
     <label for="exampleInputPassword1">Jenis WO</label>
     <select name= 'jenis_wo'class="form-control" id="exampleFormControlSelect1">
       <option>pilih jenis wo</option>
-      <option>digipos</option>
+      <option>whatsaap</option>
       <option>dismant</option>
       <option>ekspan</option>
       <option>indibiz</option>

@@ -11,11 +11,14 @@ class AssuranceKegiatanController extends Controller
     public function tambahkegiatan(Request $request)
     {
         KegiatanModel::create([
+            'tanggal' => $request->tanggal,
             'no_order' => $request->no_order,
             'jenis_wo' => $request->jenis_wo,
             'status' => $request->status, 
             'status_approve' => 'Menunggu',
             'jenis' => 'Assurance',
+            'id_user' => session('id_user'),
+            'point' => '0',
         ]);
     
         return redirect()->route('teknisi_assurance.kegiatan')
