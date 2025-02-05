@@ -11,10 +11,13 @@ class ProvisioningKegiatanController extends Controller
     public function tambahkegiatan(Request $request)
     {
         KegiatanModel::create([
+            'tanggal' => $request->tanggal,
             'no_order' => $request->no_order,
             'jenis_wo' => $request->jenis_wo,
             'status' => $request->status,
             'status_approve' => "Menunggu",
+            'id_user' => session("id_user"),
+            'point' => "0",
             'jenis' => "Provisioning",
         ]);
         return redirect()->route('teknisi_provisioning.kegiatan')

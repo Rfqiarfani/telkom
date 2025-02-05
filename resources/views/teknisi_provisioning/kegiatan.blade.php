@@ -30,6 +30,10 @@
       <form action="/teknisi_provisioning/tambahkegiatan" method="post">
         @csrf 
       <div class="modal-body">
+      <div class="form-group">
+    <label for="exampleInputEmail1">Tanggal</label>
+    <input  name="tanggal" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
   <div class="form-group">
     <label for="exampleInputEmail1">No Order</label>
     <input  name="no_order" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
