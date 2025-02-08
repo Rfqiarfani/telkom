@@ -65,11 +65,27 @@
                     <span>Manajemen Akun Pengguna</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('manajemen-data-aktivitas.index') ? 'active' : '' }}">
+            <!-- <li class="nav-item {{ request()->routeIs('manajemen-data-aktivitas.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('manajemen-data-aktivitas.index') }}">
                     <i class="fas fa-tasks fa-fw"></i>
                     <span>Manajemen Data Aktivitas</span>
                 </a>
+            </li> -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                    aria-controls="collapseTwo">
+                    <i class="fas fa-tasks fa-fw"></i>
+                    <span>Produktivitas</span>
+                </a>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Produktivitas</h6>
+                        <a class="collapse-item" href="buttons.html">Provisioning</a>
+                        <a class="collapse-item"
+                            href="{{ route('produktivitas.produktivitas_assurance') }}">Assurance</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item {{ request()->routeIs('manajemen-profil-perusahaan.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('manajemen-profil-perusahaan.index') }}">
@@ -142,7 +158,8 @@
 
                 <!-- Main Content Area -->
                 <div class="container-fluid">
-                    @yield('content') <!-- Konten dari halaman lain akan dimasukkan di sini -->
+                    @yield('content')
+                    <!-- Konten dari halaman lain akan dimasukkan di sini -->
                 </div>
 
             </div>
@@ -198,53 +215,53 @@
     <!-- Notifikasi Selamat Datang -->
 
     <style>
-        #welcome-message {
+    #welcome-message {
 
-            position: fixed;
+        position: fixed;
 
-            bottom: 20px;
+        bottom: 20px;
 
-            right: 20px;
+        right: 20px;
 
-            z-index: 9999;
+        z-index: 9999;
 
-            width: auto;
+        width: auto;
 
-            max-width: 300px;
+        max-width: 300px;
 
-            transition: opacity 0.5s ease;
+        transition: opacity 0.5s ease;
 
-        }
+    }
     </style>
 
 
     @if (session('message'))
-        <div class="alert alert-success" id="welcome-message">
+    <div class="alert alert-success" id="welcome-message">
 
-            {{ session('message') }}
+        {{ session('message') }}
 
-        </div>
+    </div>
     @endif
 
 
     <script>
-        const welcomeMessage = document.getElementById('welcome-message');
+    const welcomeMessage = document.getElementById('welcome-message');
 
-        if (welcomeMessage) {
+    if (welcomeMessage) {
+
+        setTimeout(() => {
+
+            welcomeMessage.style.opacity = '0';
 
             setTimeout(() => {
 
-                welcomeMessage.style.opacity = '0';
+                welcomeMessage.style.display = 'none';
 
-                setTimeout(() => {
+            }, 500);
 
-                    welcomeMessage.style.display = 'none';
+        }, 5000);
 
-                }, 500);
-
-            }, 5000);
-
-        }
+    }
     </script>
 
     <!-- Bootstrap core JavaScript-->
@@ -261,7 +278,8 @@
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-    @yield('scripts') <!-- Menambahkan section untuk skrip halaman -->
+    @yield('scripts')
+    <!-- Menambahkan section untuk skrip halaman -->
 
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>

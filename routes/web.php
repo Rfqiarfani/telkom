@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProvisioningController;
 use App\Http\Controllers\Admin\ExportLaporanController;
 use App\Http\Controllers\Admin\ManajemenDataAktivitasController;
 use App\Http\Controllers\Admin\ManajemenProfilPerusahaanController;
+use App\Http\Controllers\Admin\ProduktivitasAssuranceController;
 use Illuminate\Http\Request;
 
 // Landing page untuk login (teknisi)
@@ -110,3 +111,5 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/management_akun
 Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/management_data_aktivitas', function () {
     return view('admin_assurance.management_data_aktivitas');
 })->name('admin_assurance.management_data_aktivitas');
+
+Route::middleware(['auth', 'role:Admin'])->get('/admin/produktivitas/produktivitas_assurance', [ProduktivitasAssuranceController::class, 'produktivitas_assurance'])->name('produktivitas.produktivitas_assurance');
