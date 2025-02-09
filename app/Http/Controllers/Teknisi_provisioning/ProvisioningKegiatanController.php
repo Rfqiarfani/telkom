@@ -35,7 +35,7 @@ class ProvisioningKegiatanController extends Controller
 
     public function tampilkegiatan(Request $request)
     {
-        $data=KegiatanModel::where("jenis","Provisioning")->get();
+        $data=KegiatanModel::where("jenis","Provisioning")->where("status_approve","Menunggu")->get();
         return view('teknisi_provisioning.kegiatan',compact("data"));
     }
 }

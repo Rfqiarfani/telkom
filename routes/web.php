@@ -38,7 +38,8 @@ Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/dashboar
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/kegiatan', [ProvisioningKegiatanController::class,'tampilkegiatan'])->name('teknisi_provisioning.kegiatan');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/riwayat', function () {
-    return view('teknisi_provisioning.riwayat');
+    $data=KegiatanModel::where("jenis","Provisioning")->where("status_approve","Disetujui")->orWhere("status_approve","Ditolak")->get();
+    return view('teknisi_provisioning.riwayat',compact("data"));
 })->name('teknisi_provisioning.riwayat');
 
 Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/tambahkegiatan',[ProvisioningKegiatanController::class,'tambahkegiatan'] )->name('teknisi_provisioning.tambahkegiatan');
