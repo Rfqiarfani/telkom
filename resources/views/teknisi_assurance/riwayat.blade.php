@@ -60,16 +60,34 @@
 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Tanggal</th>
                                 <th>No Order</th>
                                 <th>Jenis WO</th>
                                 <th>Status</th>
                                 <th>Status Approve</th>
+                                <th>Point</th>
                             </tr>
                         </thead>
                         <tbody>
+                          @foreach ($data as $value)
+                          <tr>
+                                <th>{{$value->tanggal}}</th>
+                                <th>{{$value->no_order}}</th>
+                                <th>{{$value->jenis_wo}}</th>
+                                <th>
+                                  @if ($value->status=="sukses")
+                                  <span class="badge badge-pill badge-success">{{$value->status}}</span>
+                                  @elseif ($value->status=="kendala")
+                                  <span class="badge badge-pill badge-danger">{{$value->status}}</span>
+                                  @endif
+                                </th>
+                                <th>{{$value->status_approve}}</th>
+                                <th class="text-success">+{{$value->point}}</th>
+                            </tr>
+                          @endforeach
                         </tbody>
                     </table>
                 </div>

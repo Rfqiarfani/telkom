@@ -36,7 +36,7 @@ class AssuranceKegiatanController extends Controller
 
     public function tampilkegiatan(Request $request)
     {
-        $data=KegiatanModel::where('jenis','Assurance')->get();
+        $data=KegiatanModel::where('jenis','Assurance')->where('status_approve','Menunggu')->get();
     return view('teknisi_assurance.kegiatan',compact('data'));
     }
 }
