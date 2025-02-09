@@ -59,12 +59,6 @@
             </li>
             <hr class="sidebar-divider">
             <div class="sidebar-heading">Manajemen</div>
-            <li class="nav-item {{ request()->routeIs('manajemen-akun-pengguna.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('manajemen-akun-pengguna.index') }}">
-                    <i class="fas fa-user fa-fw"></i>
-                    <span>Profile</span>
-                </a>
-            </li>
             <hr class="sidebar-divider">
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">

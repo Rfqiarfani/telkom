@@ -58,7 +58,8 @@ Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/dashboard',
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/kegiatan',[AssuranceKegiatanController::class,'tampilkegiatan'] )->name('teknisi_assurance.kegiatan');
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_assurance/riwayat', function () {
-    return view('teknisi_assurance.riwayat');
+    $data=KegiatanModel::where('jenis','Assurance')->where('status_approve','Disetujui')->orWhere('status_approve','Ditolak')->get();
+    return view('teknisi_assurance.riwayat',compact('data'));
 })->name('teknisi_assurance.riwayat');
 
 Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_assurance/tambahkegiatan',[AssuranceKegiatanController::class,'tambahkegiatan'] )->name('teknisi_assurance.tambahkegiatan');
