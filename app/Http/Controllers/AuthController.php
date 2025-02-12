@@ -62,6 +62,7 @@ class AuthController extends Controller
 
 
                 session()->put("id_user",$user->id);
+                session()->put("name",$user->name);
                 return redirect()->route('teknisi_provisioning.dashboard');  // Untuk teknisi
 
             }
