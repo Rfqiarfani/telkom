@@ -57,6 +57,15 @@
                     <span>Riwayat</span>
                 </a>
             </li>
+
+            </li>
+            <li class="nav-item {{ request()->routeIs('teknisi_provisioning.produktivitas') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('teknisi_provisioning.produktivitas') }}">
+                    <i class="fas fa-check fa-fw"></i>
+                    <span>Produktivitas</span>
+                </a>
+            </li>
+
             <hr class="sidebar-divider">
             <div class="sidebar-heading">Manajemen</div>
             
