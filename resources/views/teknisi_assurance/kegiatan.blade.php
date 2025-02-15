@@ -48,7 +48,7 @@
       <option>indibiz</option>
       <option>mo</option>
       <option>orbit</option>
-      <option>pda</option>
+      <option>pda</option>;
       <option>stb mig</option>
     </select>
   </div>
