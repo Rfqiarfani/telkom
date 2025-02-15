@@ -13,6 +13,26 @@
             <div class="card-body">
                 <p>Di sini Anda dapat melihat produktivitas anda.</p>
 
+                <form action="" method='get'>
+                                    <div class="row d-flex align-items-end">
+                                        <div class="col-md-4 mt-3">
+                                            <label for="tanggal_awal" class="form-label">Tanggal Awal:</label>
+                                            <input type="date" value="<?= $_GET['tanggal_awal'] ?? ''; ?>"
+                                                name="tanggal_awal" id="tanggal_awal" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-4 mt-3">
+                                            <label for="tanggal_akhir" class="form-label">Tanggal Akhir:</label>
+                                            <input type="date" value="<?= $_GET['tanggal_akhir'] ?? ''; ?>" name="tanggal_akhir"
+                                                id="tanggal_akhir" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-4 mt-3 d-flex align-items-end">
+                                            <button id="filter_button" type="submit"
+                                                class="btn btn-primary w-100">Filter</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br>
+
                 <!-- Content Row -->
                 <div class="row">
 
@@ -23,8 +43,8 @@
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Earnings (Monthly)</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        Grand Total</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -41,8 +61,8 @@
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Earnings (Annual)</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                        Total Point</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">30</div>
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

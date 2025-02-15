@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Teknisi_assurance\AssuranceKegiatanController;
 use App\Http\Controllers\Teknisi_provisioning\KegiatanController;
 use App\Http\Controllers\Teknisi_provisioning\ProvisioningKegiatanController;
+use App\Http\Controllers\Teknisi_provisioning\ProvisioningProduktivitasController;
+use App\Http\Controllers\Teknisi_provisioning\ProvisioningRiwayatController;
 use App\Models\KegiatanModel;
 
 use Illuminate\Support\Facades\Route;
@@ -37,15 +39,9 @@ Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/dashboar
 
 Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/kegiatan', [ProvisioningKegiatanController::class,'tampilkegiatan'])->name('teknisi_provisioning.kegiatan');
 
-Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/riwayat', function () {
-    $data=KegiatanModel::where("jenis","Provisioning")->where("status_approve","Disetujui")->orWhere("status_approve","Ditolak")->get();
-    return view('teknisi_provisioning.riwayat',compact("data"));
-})->name('teknisi_provisioning.riwayat');
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/riwayat', [ProvisioningRiwayatController::class,'tampilriwayat'])->name('teknisi_provisioning.riwayat');
 
-Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/produktivitas', function () {
-    $data=KegiatanModel::where("jenis","Provisioning")->where("status_approve","Disetujui")->get();
-    return view('teknisi_provisioning.produktivitas',compact("data"));
-})->name('teknisi_provisioning.produktivitas');
+Route::middleware(['auth', 'role:Teknisi'])->get('/teknisi_provisioning/produktivitas', [ProvisioningProduktivitasController::class,'tampilproduktivitas'])->name('teknisi_provisioning.produktivitas');
 
 Route::middleware(['auth', 'role:Teknisi'])->post('/teknisi_provisioning/tambahkegiatan',[ProvisioningKegiatanController::class,'tambahkegiatan'] )->name('teknisi_provisioning.tambahkegiatan');
 
