@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-
 class AuthController extends Controller
 {
     public function showLoginForm()
@@ -21,59 +20,39 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-
     {
-
         // Validasi input
-
         $credentials = $request->validate([
-
             'nik' => 'required',
-
             'password' => 'required',
-
         ]);
 
-
         // Mencari pengguna berdasarkan NIK
-
         $user = User::where('nik', $credentials['nik'])->first();
 
-
         // Memeriksa apakah pengguna ada dan password cocok
-
         if ($user && Hash::check($credentials['password'], $user->password)) {
-
             Auth::login($user);
 
-
             // Menyimpan nama teknisi dalam session flash
-
             session()->flash('message', 'Selamat datang, ' . $user->name);
 
-
             // Redirect berdasarkan role
-
             if ($user->role === 'Admin') {
-
                 return redirect()->route('admin.dashboard');  // Untuk admin
-
-            } elseif ($user->role === 'Teknisi') {
-
-
-                session()->put("id_user",$user->id);
-                session()->put("name",$user->name);
-                return redirect()->route('teknisi_provisioning.dashboard');  // Untuk teknisi
-
+            } elseif ($user->role === 'Teknisi Provisioning') {
+                session()->put("id_user", $user->id);
+                session()->put("name", $user->name);
+                return redirect()->route('teknisi_provisioning.dashboard');  // Untuk teknisi provisioning
+            } elseif ($user->role === 'Teknisi Assurance') {
+                session()->put("id_user", $user->id);
+                session()->put("name", $user->name);
+                return redirect()->route('teknisi_assurance.dashboard');  // Untuk teknisi assurance
             }
-
         }
 
-
         // Jika login gagal
-
         return back()->withErrors(['login' => 'NIK atau Password salah!']);
-
     }
 
     public function adminLogin(Request $request)

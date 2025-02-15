@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -15,7 +16,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        return view('users.create'); // Pastikan view ini memiliki pilihan untuk role
     }
 
     public function store(Request $request)
@@ -24,7 +25,7 @@ class UserController extends Controller
             'nik' => 'required|unique:users',
             'password' => 'required',
             'name' => 'required',
-            'role' => 'required',
+            'role' => 'required|in:Admin,Teknisi Provisioning,Teknisi Assurance', // Validasi role
         ]);
 
         User::create([
@@ -39,7 +40,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user')); // Pastikan view ini memiliki pilihan untuk role
     }
 
     public function update(Request $request, User $user)
@@ -47,7 +48,7 @@ class UserController extends Controller
         $request->validate([
             'nik' => 'required|unique:users,nik,' . $user->id,
             'name' => 'required',
-            'role' => 'required',
+            'role' => 'required|in:Admin,Teknisi Provisioning,Teknisi Assurance', // Validasi role
         ]);
 
         $user->update([

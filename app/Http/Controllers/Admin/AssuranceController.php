@@ -26,7 +26,7 @@ class AssuranceController extends Controller
             'status_approve' => 'Disetujui',
             'point' => '2',
         ]);
-    
+
         return redirect()->route('assurance.index')
                  ->with('message', 'Data Berhasil disetujui.');
     }
@@ -36,7 +36,7 @@ class AssuranceController extends Controller
         $kegiatan->update([
             'status_approve' => 'Ditolak',
         ]);
-    
+
         return redirect()->route('assurance.index')
                  ->with('message', 'Data Berhasil ditolak.');
     }

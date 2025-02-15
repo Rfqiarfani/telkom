@@ -38,64 +38,59 @@
                 <div class="sidebar-brand-text mx-3">Admin</div>
             </a>
             <hr class="sidebar-divider my-0">
-            <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <li class="nav-item {{ request()->routeIs('admin_provisioning.dashboard') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin_provisioning.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <div class="sidebar-heading">Divisi</div>
+            <!-- <div class="sidebar-heading">Divisi</div>
             <li class="nav-item {{ request()->routeIs('provisioning.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('provisioning.index') }}">
                     <i class="fas fa-cogs fa-fw"></i>
                     <span>Provisioning</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('assurance.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('assurance.index') }}">
+            <li class="nav-item {{ request()->routeIs('provisioning.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('provisioning.index') }}">
                     <i class="fas fa-check fa-fw"></i>
-                    <span>Assurance</span>
+                    <span>provisioning</span>
                 </a>
-            </li>
+            </li> -->
             <hr class="sidebar-divider">
             <div class="sidebar-heading">Manajemen</div>
-            <li class="nav-item {{ request()->routeIs('manajemen-akun-pengguna.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('manajemen-akun-pengguna.index') }}">
+            <li class="nav-item {{ request()->routeIs('admin_provisioning.management_akun_pengguna') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin_provisioning.management_akun_pengguna') }}">
                     <i class="fas fa-user fa-fw"></i>
                     <span>Manajemen Akun Pengguna</span>
                 </a>
             </li>
-            <!-- <li class="nav-item {{ request()->routeIs('manajemen-data-aktivitas.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('manajemen-data-aktivitas.index') }}">
+            <li class="nav-item {{ request()->routeIs('admin_provisioning.management_data_aktivitas') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin_provisioning.management_data_aktivitas') }}">
                     <i class="fas fa-tasks fa-fw"></i>
                     <span>Manajemen Data Aktivitas</span>
                 </a>
-            </li> -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                    aria-controls="collapseTwo">
-                    <i class="fas fa-tasks fa-fw"></i>
-                    <span>Produktivitas</span>
-                </a>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Produktivitas</h6>
-                        <a class="collapse-item"
-                            href="{{ route('produktivitas.produktivitas_provisioning') }}">Provisioning</a>
-                        <a class="collapse-item"
-                            href="{{ route('produktivitas.produktivitas_assurance') }}">Assurance</a>
-                    </div>
-                </div>
             </li>
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading">Lainnya</div>
+            <li class="nav-item {{ request()->routeIs('admin_provisioning.management_data_aktivitas') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin_provisioning.management_data_aktivitas') }}">
+                    <i class="fas fa-tasks fa-fw"></i>
+                    <span>Riwayat Data Aktivitas</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('manajemen-profil-perusahaan.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('manajemen-profil-perusahaan.index') }}">
+                    <i class="fas fa-building fa-fw"></i>
+                    <span>Manajemen Profil Perusahaan</span>
+                </a>
+            </li>
+            <!-- <hr class="sidebar-divider"> -->
+            <!-- <div class="sidebar-heading">Lainnya</div>
             <li class="nav-item {{ request()->routeIs('export-laporan.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('export-laporan.index') }}">
                     <i class="fas fa-file-export fa-fw"></i>
                     <span>Ekspor Laporan</span>
                 </a>
-            </li>
+            </li> -->
             <hr class="sidebar-divider">
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
