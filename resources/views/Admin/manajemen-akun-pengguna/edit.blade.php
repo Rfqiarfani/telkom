@@ -6,89 +6,93 @@
 
 @section('content')
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <h1 class="h3 mb-4 text-gray-800">Edit Akun Pengguna</h1>
+    <h1 class="h3 mb-4 text-gray-800">Edit Akun Pengguna</h1>
 
-        <div class="card shadow mb-4">
+    <div class="card shadow mb-4">
 
-            <div class="card-header py-3">
+        <div class="card-header py-3">
 
-                <h6 class="m-0 font-weight-bold text-primary">Form Edit Akun Pengguna</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Form Edit Akun Pengguna</h6>
 
-            </div>
+        </div>
 
-            <div class="card-body">
+        <div class="card-body">
 
-                <form action="{{ route('manajemen-akun-pengguna.update', $user) }}" method="POST">
+            <form action="{{ route('manajemen-akun-pengguna.update', $user) }}" method="POST">
 
-                    @csrf
+                @csrf
 
-                    @method('PUT')
+                @method('PUT')
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <label for="nik">NIK</label>
+                    <label for="nik">NIK</label>
 
-                        <input type="text" class="form-control" id="nik" name="nik" value="{{ $user->nik }}" required>
+                    <input type="text" class="form-control" id="nik" name="nik" value="{{ $user->nik }}" required>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <label for="password">Password (kosongkan jika tidak ingin mengubah)</label>
+                    <label for="password">Password (kosongkan jika tidak ingin mengubah)</label>
 
-                        <div class="input-group">
+                    <div class="input-group">
 
-                            <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password">
 
-                            <div class="input-group-append">
+                        <div class="input-group-append">
 
-                                <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                            <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
 
-                                    <i class="fas fa-eye" id="eyeIcon"></i>
+                                <i class="fas fa-eye" id="eyeIcon"></i>
 
-                                </span>
-
-                            </div>
+                            </span>
 
                         </div>
 
                     </div>
 
-                    <div class="form-group">
+                </div>
 
-                        <label for="name">Nama</label>
+                <div class="form-group">
 
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+                    <label for="name">Nama</label>
 
-                    </div>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
 
-                    <div class="form-group">
+                </div>
 
-                        <label for="role">Role</label>
+                <div class="form-group">
 
-                        <select class="form-control" id="role" name="role" required>
+                    <label for="role">Role</label>
 
-                            <option value="Admin" {{ $user->role == 'Admin' ? 'selected' : '' }}>Admin</option>
+                    <select class="form-control" id="role" name="role" required>
 
-                            <option value="Teknisi" {{ $user->role == 'Teknisi' ? 'selected' : '' }}>Teknisi</option>
+                        <option value="Admin" {{ $user->role == 'Admin' ? 'selected' : '' }}>Admin</option>
 
-                            <!-- Tambahkan role lain jika diperlukan -->
+                        <option value="Teknisi Provisioning"
+                            {{ $user->role == 'Teknisi Provisioning' ? 'selected' : '' }}>Teknisi Provisioning</option>
 
-                        </select>
+                        <option value="Teknisi Assurance" {{ $user->role == 'Teknisi Assurance' ? 'selected' : '' }}>
+                            Teknisi Assurance</option>
 
-                    </div>
+                        <!-- Tambahkan role lain jika diperlukan -->
 
-                    <button type="submit" class="btn btn-primary">Update Akun</button>
+                    </select>
 
-                    <a href="{{ route('manajemen-akun-pengguna.index') }}" class="btn btn-secondary">Batal</a>
+                </div>
 
-                </form>
+                <button type="submit" class="btn btn-primary">Update Akun</button>
 
-            </div>
+                <a href="{{ route('manajemen-akun-pengguna.index') }}" class="btn btn-secondary">Batal</a>
+
+            </form>
 
         </div>
+
+    </div>
 
 </div>
 
@@ -97,32 +101,30 @@
 
 @section('scripts')
 
-    <script>
+<script>
+$(document).ready(function() {
 
-        $(document).ready(function() {
+    $('#togglePassword').on('click', function() {
 
-            $('#togglePassword').on('click', function() {
+        const passwordInput = $('#password');
 
-                const passwordInput = $('#password');
-
-                const eyeIcon = $('#eyeIcon');
-
-
-                // Toggle the type attribute
-
-                const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
-
-                passwordInput.attr('type', type);
+        const eyeIcon = $('#eyeIcon');
 
 
-                // Toggle the eye icon
+        // Toggle the type attribute
 
-                eyeIcon.toggleClass('fa-eye fa-eye-slash');
+        const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
 
-            });
+        passwordInput.attr('type', type);
 
-        });
 
-    </script>
+        // Toggle the eye icon
+
+        eyeIcon.toggleClass('fa-eye fa-eye-slash');
+
+    });
+
+});
+</script>
 
 @endsection

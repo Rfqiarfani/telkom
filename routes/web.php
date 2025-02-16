@@ -136,3 +136,7 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin/assurance', [AssuranceCon
 Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/dashboard', function () {
     return view('admin_assurance.dashboard');
 })->name('admin_assurance.dashboard');
+
+Route::middleware(['auth', 'role:Admin'])->post('/admin/setujukegiatanassurance', [AssuranceController::class, 'setujukegiatan'])->name('assurance.setujukegiatan');
+
+Route::middleware(['auth', 'role:Admin'])->post('/admin/tolakkegiatanassurance', [AssuranceController::class, 'tolakkegiatan'])->name('assurance.tolakkegiatan');
