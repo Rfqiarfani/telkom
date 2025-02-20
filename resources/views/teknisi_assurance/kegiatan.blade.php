@@ -11,7 +11,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Daftar Kegiatan Anda</h6>
             </div>
             <div class="card-body">
-                <p>Di Sini Anda Dapat Mengelola Kegiatan Anda.</p>
+                <p>Di Sini Dapat Mengelola Kegiatan Anda.</p>
                 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
   Tambah Kegiatan

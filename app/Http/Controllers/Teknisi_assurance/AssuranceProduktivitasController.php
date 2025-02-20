@@ -18,7 +18,11 @@ class AssuranceProduktivitasController extends Controller
         $data=KegiatanModel::where('jenis','Assurance')->where('status_approve','Disetujui')->get();
     }
         
-        return view('teknisi_assurance.produktivitas',compact('data')); 
+    $total_point = $data->sum('point');
+
+    $grand_total = $data->where('status', 'sukses')->count();
+
+    return view('teknisi_assurance.produktivitas', compact('data', 'total_point', 'grand_total'));
     }
 
 }

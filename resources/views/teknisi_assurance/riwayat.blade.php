@@ -11,7 +11,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Daftar Riwayat Anda</h6>
             </div>
             <div class="card-body">
-                <p>Di sini Anda dapat mengelola Riwayat anda.</p>
+                <p>Di sini Dapat Mengelola Riwayat Anda.</p>
                 <!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
