@@ -18,6 +18,7 @@
                     <thead>
                         <tr>
                             <th>No Order</th>
+                            <th>Tanggal</th>
                             <th>Nama</th>
                             <th>Jenis WO</th>
                             <th>Status</th>
@@ -30,6 +31,7 @@
                         @foreach ($data as $value)
                         <tr>
                             <td>{{$value->no_order}}</td>
+                            <td>{{$value->tanggal}}</td>
                             <td>{{$value->name}}</td>
                             <td>{{$value->jenis_wo}}</td>
                             <td>
@@ -40,10 +42,14 @@
                                 @endif
                             </td>
                             <td>{{$value->status_approve}}</td>
-                            @if ($value->status=="sukses")
+                            @if ($value->status=="sukses"&&$value->status_approve=="Disetujui")
                             <td class="text-success">+2</td>
                             @elseif ($value->status=="kendala")
-                            <td class="text-success">+0</td>
+                            <td class="text-danger">+0</td>
+                            @elseif ($value->status=="sukses"&&$value->status_approve=="Ditolak")
+                            <td class="text-success">-</td>
+                            @else
+                            <td class="text-success">-</td>
                             @endif
                             <td>
                                 @if ($value->status_approve=="Menunggu")
@@ -70,7 +76,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/admin/setujukegiatanProvisioning" method="post">
+                                            <form action="/admin/setujukegiatanassurance" method="post">
                                                 @csrf
                                                 <div class="modal-body">
 
@@ -100,7 +106,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/admin/tolakkegiatanProvisioning" method="post">
+                                            <form action="/admin/tolakkegiatanassurance" method="post">
                                                 @csrf
                                                 <div class="modal-body">
 
