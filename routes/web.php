@@ -140,3 +140,7 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/dashboard', fun
 Route::middleware(['auth', 'role:Admin'])->post('/admin/setujukegiatanassurance', [AssuranceController::class, 'setujukegiatan'])->name('assurance.setujukegiatan');
 
 Route::middleware(['auth', 'role:Admin'])->post('/admin/tolakkegiatanassurance', [AssuranceController::class, 'tolakkegiatan'])->name('assurance.tolakkegiatan');
+
+Route::middleware(['auth', 'role:Admin'])->post('/admin/setujukegiatanprovisioning', [ProvisioningController::class, 'setujukegiatan'])->name('provisioning.setujukegiatan');
+
+Route::middleware(['auth', 'role:Admin'])->post('/admin/tolakkegiatanprovisioning', [ProvisioningController::class, 'tolakkegiatan'])->name('provisioning.tolakkegiatan');
