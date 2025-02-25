@@ -50,6 +50,11 @@ class ProvisioningController extends Controller
     {
         $kegiatan = KegiatanModel::find($request->id_kegiatan);
 
+        if (!$kegiatan) {
+            return redirect()->route('admin.provisioning.index')
+                ->with('error', 'Data kegiatan tidak ditemukan.');
+        }
+
         $jenis_wo = strtolower($kegiatan->jenis_wo); // Pastikan tidak case-sensitive
         $point = 0;
 
@@ -63,7 +68,11 @@ class ProvisioningController extends Controller
             'status_approve' => 'Disetujui',
             'point' => $point,
         ]);
+
+        return redirect()->route('provisioning.index')
+            ->with('message', 'Data Berhasil disetujui.');
     }
+
 
     public function tolakkegiatan(Request $request)
     {
