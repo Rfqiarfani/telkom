@@ -102,8 +102,65 @@
                                 </th>
                                 <th>{{$value->status_approve}}</th>
                                 <th>
+                                <button data-toggle="modal" data-target="#editModal{{$value->id_kegiatan}}" class="btn btn-warning btn-sm">edit</button>
+                                <div class="modal fade" id="editModal{{$value->id_kegiatan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">  
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">edit kegiatan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/teknisi_provisioning/editkegiatan" method="post">
+        @csrf 
+        <div class="modal-body">
+      <div class="form-group">
+    <label for="exampleInputEmail1">Tanggal</label>
+    <input   value="{{$value->tanggal}}"name="tanggal" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">No Order</label>
+    <input   value="{{$value->no_order}}"name="no_order" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Jenis WO</label>
+    <select name="jenis_wo" class="form-control" id="exampleFormControlSelect1">
+      <option>pilih jenis wo</option>
+      <option>digipos</option>
+      <option>dismant</option>
+      <option>ekspan</option>
+      <option>indibiz</option>
+      <option>mo</option>
+      <option>orbit</option>
+      <option>pda</option>
+      <option>stb mig</option>
+      <option>datin</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Status</label>
+    <select name="status" class="form-control" id="exampleFormControlSelect1">
+      <option>pilih status</option>
+      <option>sukses</option>
+      <option>pending</option>
+      <option>kendala</option>
+    </select>
+
+  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-success">Update</button>
+        <input type="hidden" name="id_kegiatan" value="{{$value->id_kegiatan}}">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
                                   <button data-toggle="modal" data-target="#hapusModal{{$value->id_kegiatan}}" class="btn btn-danger btn-sm">hapus</button>
-                                  <div class="modal fade" id="hapusModal{{$value->id_kegiatan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal fade" id="hapusModal{{$value->id_kegiatan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">  
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

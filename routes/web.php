@@ -48,6 +48,8 @@ Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisi
 
 Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisioning/hapuskegiatan', [ProvisioningKegiatanController::class,'hapuskegiatan'])->name('teknisi_provisioning.hapuskegiatan');
 
+Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisioning/editkegiatan', [ProvisioningKegiatanController::class,'editkegiatan'])->name('teknisi_provisioning.editkegiatan');
+
 // Route untuk dashboard Teknisi Assurance
 Route::middleware(['auth', 'role:Teknisi Assurance'])->get('/teknisi_assurance/dashboard', function () {
     return view('teknisi_assurance.dashboard');

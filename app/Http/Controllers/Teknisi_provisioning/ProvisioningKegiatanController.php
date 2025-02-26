@@ -24,6 +24,26 @@ class ProvisioningKegiatanController extends Controller
                  ->with('message', 'Data Berhasil ditambahkan.');
     }
 
+    public function editkegiatan(Request $request)
+{
+    $kegiatan = KegiatanModel::find($request->id_kegiatan);
+
+    if ($kegiatan) {
+        $kegiatan->update([
+            'tanggal' => $request->tanggal,
+            'no_order' => $request->no_order,
+            'jenis_wo' => $request->jenis_wo,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('teknisi_provisioning.kegiatan')
+                         ->with('message', 'Data Berhasil diperbarui.');
+    }
+
+    return redirect()->route('teknisi_provisioning.kegiatan')
+                     ->with('error', 'Data tidak ditemukan.');
+}
+
     public function hapuskegiatan(Request $request)
     {
         $kegiatan=KegiatanModel::find($request->id_kegiatan);
