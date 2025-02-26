@@ -63,6 +63,8 @@ Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/
 
 Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/hapuskegiatan', [AssuranceKegiatanController::class,'hapuskegiatan'])->name('teknisi_assurance.hapuskegiatan');
 
+Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/editkegiatan', [AssuranceKegiatanController::class,'editkegiatan'])->name('teknisi_assurance.editkegiatan');
+
 // Rute untuk manajemen akun Pengguna
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin/manajemen-akun-pengguna', [ManajemenAkunPenggunaController::class, 'index'])->name('manajemen-akun-pengguna.index');
