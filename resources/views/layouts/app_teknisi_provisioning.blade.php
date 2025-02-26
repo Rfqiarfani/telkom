@@ -68,7 +68,7 @@
 
             <hr class="sidebar-divider">
             <div class="sidebar-heading">Manajemen</div>
-            
+
             <hr class="sidebar-divider">
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">

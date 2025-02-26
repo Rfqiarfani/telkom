@@ -28,7 +28,7 @@
         </button>
       </div>
       <form action="/teknisi_provisioning/tambahkegiatan" method="post">
-        @csrf 
+        @csrf
       <div class="modal-body">
       <div class="form-group">
     <label for="exampleInputEmail1">Tanggal</label>
@@ -44,7 +44,7 @@
       <option>pilih jenis wo</option>
       <option>digipos</option>
       <option>dismant</option>
-      <option>ekspan</option>
+      <option>expand</option>
       <option>indibiz</option>
       <option>mo</option>
       <option>orbit</option>
@@ -170,7 +170,7 @@
         </button>
       </div>
       <form action="/teknisi_provisioning/hapuskegiatan" method="post">
-        @csrf 
+        @csrf
       <div class="modal-body">
         apakah anda yakin ingin menghapus kegiatan ini
       </div>
