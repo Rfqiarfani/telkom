@@ -10,6 +10,7 @@ use App\Http\Controllers\Teknisi_provisioning\ProvisioningProduktivitasControlle
 use App\Http\Controllers\Teknisi_provisioning\ProvisioningRiwayatController;
 use App\Models\KegiatanModel;
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AssuranceController;
 use App\Http\Controllers\Admin\ManajemenAkunPenggunaController;
@@ -142,3 +143,13 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/dashboard', fun
 Route::middleware(['auth', 'role:Admin'])->post('/admin/setujukegiatanassurance', [AssuranceController::class, 'setujukegiatan'])->name('assurance.setujukegiatan');
 
 Route::middleware(['auth', 'role:Admin'])->post('/admin/tolakkegiatanassurance', [AssuranceController::class, 'tolakkegiatan'])->name('assurance.tolakkegiatan');
+
+Route::middleware(['auth', 'role:Admin'])->post('/admin/setujukegiatanprovisioning', [ProvisioningController::class, 'setujukegiatan'])->name('provisioning.setujukegiatan');
+
+Route::middleware(['auth', 'role:Admin'])->post('/admin/tolakkegiatanprovisioning', [ProvisioningController::class, 'tolakkegiatan'])->name('provisioning.tolakkegiatan');
+
+
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::get('/admin/export-laporan', [ExportLaporanController::class, 'index'])->name('export-laporan.index');
+    Route::get('/admin/export-laporan/excel', [ExportLaporanController::class, 'exportExcel'])->name('export-laporan.excel');
+});
