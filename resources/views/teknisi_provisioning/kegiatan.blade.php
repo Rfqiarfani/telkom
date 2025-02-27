@@ -49,7 +49,7 @@
       <option>mo</option>
       <option>orbit</option>
       <option>pda</option>
-      <option>stb mig</option>
+      <option>stb</option>
       <option>datin</option>
     </select>
   </div>
@@ -153,3 +153,44 @@
     </script>
 @endsection
 
+@section('scripts')
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "order": [[2, 'asc']]
+    });
+
+    // Validasi Form Tambah Kegiatan
+    $('form').on('submit', function(e) {
+        let valid = true;
+        let errorMessage = "";
+
+        let tanggal = $('input[name="tanggal"]').val();
+        let no_order = $('input[name="no_order"]').val();
+        let jenis_wo = $('select[name="jenis_wo"]').val();
+        let status = $('select[name="status"]').val();
+
+        if (!tanggal || !no_order || jenis_wo === "pilih jenis wo" || status === "pilih status") {
+            valid = false;
+            errorMessage = "Silakan lengkapi semua data sebelum mengirim.";
+        }
+
+        if (!valid) {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: errorMessage
+            });
+        }
+    });
+});
+</script>
+@endsection
+ 
