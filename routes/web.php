@@ -10,7 +10,7 @@ use App\Http\Controllers\Teknisi_provisioning\ProvisioningProduktivitasControlle
 use App\Http\Controllers\Teknisi_provisioning\ProvisioningRiwayatController;
 use App\Models\KegiatanModel;
 
-
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AssuranceController;
 use App\Http\Controllers\Admin\ManajemenAkunPenggunaController;
@@ -154,4 +154,24 @@ Route::middleware(['auth', 'role:Admin'])->post('/admin/tolakkegiatanprovisionin
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin/export-laporan', [ExportLaporanController::class, 'index'])->name('export-laporan.index');
     Route::get('/admin/export-laporan/excel', [ExportLaporanController::class, 'exportExcel'])->name('export-laporan.excel');
+});
+Route::get('/dashboard/statistik', function () {
+    $data = User::where('role', '!=', 'Admin')
+        ->select('users.id', 'users.name')
+        ->withCount([
+            'kegiatan as total_order',
+            'kegiatan as datin' => function ($query) { $query->where('jenis_wo', 'DATIN'); },
+            'kegiatan as digipos' => function ($query) { $query->where('jenis_wo', 'DIGIPOS'); },
+            'kegiatan as ekspan' => function ($query) { $query->where('jenis_wo', 'EKSPAN'); },
+            'kegiatan as indibiz' => function ($query) { $query->where('jenis_wo', 'INDIBIZ'); },
+            'kegiatan as pda' => function ($query) { $query->where('jenis_wo', 'PDA'); },
+            'kegiatan as mo' => function ($query) { $query->where('jenis_wo', 'MO'); },
+            'kegiatan as orbit' => function ($query) { $query->where('jenis_wo', 'ORBIT'); },
+            'kegiatan as stb' => function ($query) { $query->where('jenis_wo', 'STB'); },
+            'kegiatan as dismant' => function ($query) { $query->where('jenis_wo', 'DISMANT'); },
+        ])
+        ->withSum('kegiatan as total_point', 'point')
+        ->get();
+
+    return response()->json($data);
 });
