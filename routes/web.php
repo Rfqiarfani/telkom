@@ -49,6 +49,8 @@ Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisi
 
 Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisioning/hapuskegiatan', [ProvisioningKegiatanController::class,'hapuskegiatan'])->name('teknisi_provisioning.hapuskegiatan');
 
+Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisioning/editkegiatan', [ProvisioningKegiatanController::class,'editkegiatan'])->name('teknisi_provisioning.editkegiatan');
+
 // Route untuk dashboard Teknisi Assurance
 Route::middleware(['auth', 'role:Teknisi Assurance'])->get('/teknisi_assurance/dashboard', function () {
     return view('teknisi_assurance.dashboard');
@@ -63,6 +65,8 @@ Route::middleware(['auth', 'role:Teknisi Assurance'])->get('/teknisi_assurance/p
 Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/tambahkegiatan',[AssuranceKegiatanController::class,'tambahkegiatan'] )->name('teknisi_assurance.tambahkegiatan');
 
 Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/hapuskegiatan', [AssuranceKegiatanController::class,'hapuskegiatan'])->name('teknisi_assurance.hapuskegiatan');
+
+Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/editkegiatan', [AssuranceKegiatanController::class,'editkegiatan'])->name('teknisi_assurance.editkegiatan');
 
 // Rute untuk manajemen akun Pengguna
 Route::middleware(['auth', 'role:Admin'])->group(function () {
