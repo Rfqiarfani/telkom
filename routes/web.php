@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\ManajemenDataAktivitasController;
 use App\Http\Controllers\Admin\ManajemenProfilPerusahaanController;
 use App\Http\Controllers\Admin\ProduktivitasAssuranceController;
 use App\Http\Controllers\Admin\ProduktivitasProvisioningController;
+use App\Http\Controllers\Admin\ProfilController;
 use Illuminate\Http\Request;
 
 // Landing page untuk login (teknisi)
@@ -89,6 +90,10 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin/manajemen-data-aktivitas'
 
 // Rute untuk Manajemen Profil Perusahaan
 Route::middleware(['auth', 'role:Admin'])->get('/admin/manajemen-profil-perusahaan', [ManajemenProfilPerusahaanController::class, 'index'])->name('manajemen-profil-perusahaan.index');
+
+// rute profil
+Route::middleware(['auth', 'role:Admin'])->get('/admin/profil', [ProfilController::class, 'index'])->name('profil.index');
+
 
 // Route untuk dashboard Admin Assurance
 Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/dashboard', function () {
