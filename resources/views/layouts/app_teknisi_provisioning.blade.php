@@ -77,6 +77,9 @@
                 </a>
             </li>
         </ul>
+
+
+
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -105,6 +108,19 @@
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/teknisi_provisioning/profil">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Keluar
+                                </a>
+                            </div>
                         </li>
                     </ul>
 
@@ -113,7 +129,8 @@
 
                 <!-- Main Content Area -->
                 <div class="container-fluid">
-                    @yield('content') <!-- Konten dari halaman lain akan dimasukkan di sini -->
+                    @yield('content')
+                    <!-- Konten dari halaman lain akan dimasukkan di sini -->
                 </div>
 
             </div>
@@ -169,54 +186,87 @@
     <!-- Notifikasi Selamat Datang -->
 
     <style>
-        #welcome-message {
+    #welcome-message {
 
-            position: fixed;
+        position: fixed;
 
-            bottom: 20px;
+        bottom: 20px;
 
-            right: 20px;
+        right: 20px;
 
-            z-index: 9999;
+        z-index: 9999;
 
-            width: auto;
+        width: auto;
 
-            max-width: 300px;
+        max-width: 300px;
 
-            transition: opacity 0.5s ease;
+        transition: opacity 0.5s ease;
 
-        }
+    }
     </style>
 
 
     @if (session('message'))
-        <div class="alert alert-success" id="welcome-message">
+    <div class="alert alert-success" id="welcome-message">
 
-            {{ session('message') }}
+        {{ session('message') }}
 
-        </div>
+    </div>
     @endif
 
 
     <script>
-        const welcomeMessage = document.getElementById('welcome-message');
+    const welcomeMessage = document.getElementById('welcome-message');
 
-        if (welcomeMessage) {
+    if (welcomeMessage) {
+
+        setTimeout(() => {
+
+            welcomeMessage.style.opacity = '0';
 
             setTimeout(() => {
 
-                welcomeMessage.style.opacity = '0';
+                welcomeMessage.style.display = 'none';
 
-                setTimeout(() => {
+            }, 500);
 
-                    welcomeMessage.style.display = 'none';
+        }, 5000);
 
-                }, 500);
-
-            }, 5000);
-
-        }
+    }
     </script>
+
+
+
+
+    <style>
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        min-width: 10rem;
+        padding: 0.5rem 0;
+        margin: 0;
+        font-size: 1rem;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0.25rem;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .navbar .dropdown-menu {
+        z-index: 1050;
+        /* Pastikan lebih tinggi dari sidebar */
+        position: absolute;
+        right: 0;
+    }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
@@ -232,7 +282,8 @@
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-    @yield('scripts') <!-- Menambahkan section untuk skrip halaman -->
+    @yield('scripts')
+    <!-- Menambahkan section untuk skrip halaman -->
 
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>

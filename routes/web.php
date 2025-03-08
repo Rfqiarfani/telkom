@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ManajemenProfilPerusahaanController;
 use App\Http\Controllers\Admin\ProduktivitasAssuranceController;
 use App\Http\Controllers\Admin\ProduktivitasProvisioningController;
 use App\Http\Controllers\Admin\ProfilController;
+use App\Http\Controllers\Teknisi_provisioning\ProvisioningProfilController;
 use Illuminate\Http\Request;
 
 // Landing page untuk login (teknisi)
@@ -51,6 +52,9 @@ Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisi
 Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisioning/hapuskegiatan', [ProvisioningKegiatanController::class,'hapuskegiatan'])->name('teknisi_provisioning.hapuskegiatan');
 
 Route::middleware(['auth', 'role:Teknisi Provisioning'])->post('/teknisi_provisioning/editkegiatan', [ProvisioningKegiatanController::class,'editkegiatan'])->name('teknisi_provisioning.editkegiatan');
+
+// route profil
+Route::middleware(['auth', 'role:Teknisi Provisioning'])->get('/teknisi_provisioning/profil', [ProvisioningProfilController::class, 'index'])->name('profil.index');
 
 // Route untuk dashboard Teknisi Assurance
 Route::middleware(['auth', 'role:Teknisi Assurance'])->get('/teknisi_assurance/dashboard', function () {
