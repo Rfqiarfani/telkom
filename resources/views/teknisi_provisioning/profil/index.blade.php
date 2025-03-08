@@ -16,29 +16,21 @@
         <div class="card-body">
             <div class="row">
                 <!-- Kolom Foto Profil -->
-                <div class="col-md-3 text-center">
-                    <img src="/img/fotogoogle.jpeg" class="rounded-circle img-thumbnail" alt="Foto Profil">
-                </div>
+               
 
                 <!-- Kolom Data Diri -->
                 <div class="col-md-9 align-middle">
                     <table class="table table-borderless">
                         <tr>
                             <th width="150">Nama</th>
-                            <td>: Budi Santoso
-                                <a href="#" class="text-primary ml-2" title="Edit Nama" data-toggle="modal"
-                                    data-target="#editNamaModal" style="text-decoration: none;">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                            <td>: <?= session('name') ?>
+                                
                             </td>
                         </tr>
                         <tr>
                             <th>NIK</th>
-                            <td>: 123456789
-                                <a href="#" class="text-primary ml-2" title="Edit NIK" data-toggle="modal"
-                                    data-target="#editNikModal" style="text-decoration: none;">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                            <td>:  <?= session('nik') ?>
+                               
                             </td>
                         </tr>
                     </table>
