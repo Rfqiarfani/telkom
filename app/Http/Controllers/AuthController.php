@@ -39,14 +39,19 @@ class AuthController extends Controller
 
             // Redirect berdasarkan role
             if ($user->role === 'Admin') {
+                session()->put("id_user", $user->id);
+                session()->put("name", $user->name);
+                session()->put("nik", $user->nik);
                 return redirect()->route('admin.dashboard');  // Untuk admin
             } elseif ($user->role === 'Teknisi Provisioning') {
                 session()->put("id_user", $user->id);
                 session()->put("name", $user->name);
+                session()->put("nik", $user->nik);
                 return redirect()->route('teknisi_provisioning.dashboard');  // Untuk teknisi provisioning
             } elseif ($user->role === 'Teknisi Assurance') {
                 session()->put("id_user", $user->id);
                 session()->put("name", $user->name);
+                session()->put("nik", $user->nik);
                 return redirect()->route('teknisi_assurance.dashboard');  // Untuk teknisi assurance
             }
         }

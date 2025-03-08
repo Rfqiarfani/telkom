@@ -2,7 +2,7 @@
 
 @extends('layouts.app_teknisi_provisioning')
 
-@section('title', 'Assurance')
+@section('title', 'Provisioning')
 
 @section('content')
 <div class="container-fluid">
@@ -21,25 +21,76 @@
                 </div>
 
                 <!-- Kolom Data Diri -->
-                <div class="col-md-9">
+                <div class="col-md-9 align-middle">
                     <table class="table table-borderless">
                         <tr>
                             <th width="150">Nama</th>
-                            <td>: Budi Santoso</td>
+                            <td>: Budi Santoso
+                                <a href="#" class="text-primary ml-2" title="Edit Nama" data-toggle="modal"
+                                    data-target="#editNamaModal" style="text-decoration: none;">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <th>NIK</th>
-                            <td>: 123456789</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>: budi.santoso@email.com</td>
-                        </tr>
-                        <tr>
-                            <th>Alamat</th>
-                            <td>: Jl. Mawar No. 123, Banjarmasin</td>
+                            <td>: 123456789
+                                <a href="#" class="text-primary ml-2" title="Edit NIK" data-toggle="modal"
+                                    data-target="#editNikModal" style="text-decoration: none;">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
                         </tr>
                     </table>
+                    <!-- Modal Edit Nama -->
+                    <div class="modal fade" id="editNamaModal" tabindex="-1" aria-labelledby="editNamaModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editNamaModalLabel">Edit Nama</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="nama">Nama</label>
+                                            <input type="text" class="form-control" id="nama" value="Budi Santoso">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Edit nik -->
+                    <div class="modal fade" id="editNikModal" tabindex="-1" aria-labelledby="editNikModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editNamaModalLabel">Edit Nama</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="nama">NIK</label>
+                                            <input type="text" class="form-control" id="nama" value="12345678">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
