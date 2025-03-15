@@ -22,7 +22,6 @@ use App\Http\Controllers\Admin\ProduktivitasAssuranceController;
 use App\Http\Controllers\Admin\ProduktivitasProvisioningController;
 use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\Teknisi_provisioning\ProvisioningProfilController;
-use App\Http\Controllers\Teknisi_assurance\AssuranceProfilController;
 use Illuminate\Http\Request;
 
 // Landing page untuk login (teknisi)
@@ -73,9 +72,6 @@ Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/
 Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/hapuskegiatan', [AssuranceKegiatanController::class,'hapuskegiatan'])->name('teknisi_assurance.hapuskegiatan');
 
 Route::middleware(['auth', 'role:Teknisi Assurance'])->post('/teknisi_assurance/editkegiatan', [AssuranceKegiatanController::class,'editkegiatan'])->name('teknisi_assurance.editkegiatan');
-
-// route profil
-Route::middleware(['auth', 'role:Teknisi Assurance'])->get('/teknisi_assurance/profil', [AssuranceProfilController::class, 'index'])->name('profil.index');
 
 // Rute untuk manajemen akun Pengguna
 Route::middleware(['auth', 'role:Admin'])->group(function () {
@@ -133,6 +129,8 @@ Route::middleware(['auth', 'role:Admin'])->get('/admin/produktivitas/produktivit
 Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/management_akun_pengguna', function () {
     return view('admin_assurance.management_akun_pengguna');
 })->name('admin_assurance.management_akun_pengguna');
+Route::delete('/admin/manajemen-akun-pengguna/{user}', [ManajemenAkunPenggunaController::class, 'destroy'])->name('manajemen-akun-pengguna.destroy');
+
 
 // Route untuk manajemen data aktivitas di Admin Assurance
 Route::middleware(['auth', 'role:Admin'])->get('/admin_assurance/management_data_aktivitas', function () {

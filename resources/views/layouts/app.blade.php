@@ -21,7 +21,7 @@
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.10/sweetalert2.min.js" integrity="sha512-M60HsJC4M4A8pgBOj7oC/lvJXuOc9CraWXdD4PF+KNmKl8/Mnz6AH9FANgi4SJM6D9rqPvgQt4KRFR1rPN+EUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 </head>
@@ -72,8 +72,8 @@
                 </a>
             </li> -->
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                    aria-controls="collapseTwo">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-tasks fa-fw"></i>
                     <span>Produktivitas</span>
                 </a>
@@ -143,7 +143,8 @@
                                     Profil
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Keluar
                                 </a>
@@ -213,84 +214,84 @@
     <!-- Notifikasi Selamat Datang -->
 
     <style>
-    #welcome-message {
+        #welcome-message {
 
-        position: fixed;
+            position: fixed;
 
-        bottom: 20px;
+            bottom: 20px;
 
-        right: 20px;
+            right: 20px;
 
-        z-index: 9999;
+            z-index: 9999;
 
-        width: auto;
+            width: auto;
 
-        max-width: 300px;
+            max-width: 300px;
 
-        transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease;
 
-    }
+        }
     </style>
 
 
     @if (session('message'))
-    <div class="alert alert-success" id="welcome-message">
+        <div class="alert alert-success" id="welcome-message">
 
-        {{ session('message') }}
+            {{ session('message') }}
 
-    </div>
+        </div>
     @endif
 
 
     <script>
-    const welcomeMessage = document.getElementById('welcome-message');
+        const welcomeMessage = document.getElementById('welcome-message');
 
-    if (welcomeMessage) {
-
-        setTimeout(() => {
-
-            welcomeMessage.style.opacity = '0';
+        if (welcomeMessage) {
 
             setTimeout(() => {
 
-                welcomeMessage.style.display = 'none';
+                welcomeMessage.style.opacity = '0';
 
-            }, 500);
+                setTimeout(() => {
 
-        }, 5000);
+                    welcomeMessage.style.display = 'none';
 
-    }
+                }, 500);
+
+            }, 5000);
+
+        }
     </script>
 
 
 
 
     <style>
-    .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
-        display: none;
-        min-width: 10rem;
-        padding: 0.5rem 0;
-        margin: 0;
-        font-size: 1rem;
-        background-color: #fff;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        border-radius: 0.25rem;
-    }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            min-width: 10rem;
+            padding: 0.5rem 0;
+            margin: 0;
+            font-size: 1rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 0.25rem;
+        }
 
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
 
-    .navbar .dropdown-menu {
-        z-index: 1050;
-        /* Pastikan lebih tinggi dari sidebar */
-        position: absolute;
-        right: 0;
-    }
+        .navbar .dropdown-menu {
+            z-index: 1050;
+            /* Pastikan lebih tinggi dari sidebar */
+            position: absolute;
+            right: 0;
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -318,6 +319,11 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

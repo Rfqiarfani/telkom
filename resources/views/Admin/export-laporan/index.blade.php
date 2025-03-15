@@ -54,9 +54,9 @@
                                 <th>Nama Teknisi</th>
                                 <th>Total Order</th>
                                 <th>Total Poin</th>
-                                <th>Target Poin 203</th>
+                                 <th>Target Poin HI</th> {{-- harian --}}
                                 <th>Target / Bulan (176)</th>
-                                <th>Produktivitas</th>
+                                <th>Produktivitas</th> ambil 
                             </tr>
                         </thead>
                         <tbody>

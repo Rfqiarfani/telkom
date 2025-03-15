@@ -10,7 +10,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Form Buat Akun Pengguna</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('manajemen-akun-pengguna.store') }}" method="POST">
+            <form action="{{ route('manajemen-akun-pengguna.store') }}" method="POST" id="createUserForm">
                 @csrf
                 <div class="form-group">
                     <label for="nik">NIK</label>
@@ -40,7 +40,7 @@
                         <!-- Tambahkan role lain jika diperlukan -->
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Buat Akun</button>
+                <button type="submit" class="btn btn-primary" id="btnCreate">Buat Akun</button>
                 <a href="{{ route('manajemen-akun-pengguna.index') }}" class="btn btn-secondary">Kembali</a>
             </form>
         </div>
@@ -49,19 +49,71 @@
 @endsection
 
 @section('scripts')
-<script>
-$(document).ready(function() {
-    $('#togglePassword').on('click', function() {
-        const passwordInput = $('#password');
-        const eyeIcon = $('#eyeIcon');
+    <script>
+        $(document).ready(function() {
+            // Toggle password visibility
+            $('#togglePassword').on('click', function() {
+                const passwordInput = $('#password');
+                const eyeIcon = $('#eyeIcon');
+                const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
+                passwordInput.attr('type', type);
+                eyeIcon.toggleClass('fa-eye fa-eye-slash');
+            });
 
-        // Toggle the type attribute
-        const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
-        passwordInput.attr('type', type);
+            // Konfirmasi sebelum membuat akun
+            $('#btnCreate').on('click', function(event) {
+                event.preventDefault(); // Mencegah pengiriman form langsung
 
-        // Toggle the eye icon
-        eyeIcon.toggleClass('fa-eye fa-eye-slash');
-    });
-});
-</script>
+                Swal.fire({
+                    title: "Apakah Anda yakin ingin membuat?",
+                    text: "Data akan dibuat!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Ya, simpan!",
+                    cancelButtonText: "Batal"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let form = $('#createUserForm');
+                        let formData = form.serialize(); // Ambil data dari form
+
+                        $.ajax({
+                            url: form.attr('action'),
+                            type: "POST",
+                            data: formData,
+                            success: function(response) {
+                                Swal.fire({
+                                    title: "Berhasil!",
+                                    text: "Data berhasil dibuat.",
+                                    icon: "success",
+                                    confirmButtonText: "OK"
+                                }).then(() => {
+                                    // Simpan session sebelum redirect
+                                    sessionStorage.setItem('successMessage', "Your work has been saved");
+
+                                    // Redirect ke halaman manajemen akun
+                                    window.location.href = "{{ route('manajemen-akun-pengguna.index') }}";
+                                });
+
+                            },
+                            error: function() {
+                                Swal.fire("Error!", "Terjadi kesalahan saat menyimpan.", "error");
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Menampilkan notifikasi setelah redirect
+            if (sessionStorage.getItem('successMessage')) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: sessionStorage.getItem('successMessage'),
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                sessionStorage.removeItem('successMessage'); // Hapus session setelah ditampilkan
+            }
+        });
+    </script>
 @endsection
