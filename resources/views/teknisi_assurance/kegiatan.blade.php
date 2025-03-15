@@ -119,22 +119,22 @@
     <label for="exampleInputPassword1">Jenis WO</label>
     <select name= 'jenis_wo'class="form-control" id="exampleFormControlSelect1">
       <option>pilih jenis wo</option>
-      <option>whatsaap</option>
-      <option>dismant</option>
-      <option>ekspan</option>
-      <option>indibiz</option>
-      <option>mo</option>
-      <option>orbit</option>
-      <option>pda</option>;
-      <option>stb mig</option>
+      <option {{$value->jenis_wo == "whatsapp" ? "selected":""}}>whatsapp</option>
+      <option {{$value->jenis_wo == "dismant" ? "selected":""}}>dismant</option>
+      <option {{$value->jenis_wo == "ekspan" ? "selected":""}}>ekspan</option>
+      <option {{$value->jenis_wo == "indibiz" ? "selected":""}}>indibiz</option>
+      <option {{$value->jenis_wo == "mo" ? "selected":""}}>mo</option>
+      <option {{$value->jenis_wo == "orbit" ? "selected":""}}>orbit</option>
+      <option {{$value->jenis_wo == "pda" ? "selected":""}}>pda</option>;
+      <option {{$value->jenis_wo == "stb mig" ? "selected":""}}>stb mig</option>
     </select>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Status</label>
     <select name= 'status'class="form-control" id="exampleFormControlSelect1">
       <option>pilih status</option>
-      <option>sukses</option>
-      <option>kendala</option>
+      <option {{$value->status == "sukses" ? "selected":""}}>sukses</option>
+      <option {{$value->status == "kendala" ? "selected":""}}>kendala</option>
     </select>
 
   </div>
