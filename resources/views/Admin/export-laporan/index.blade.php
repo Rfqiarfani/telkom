@@ -15,8 +15,13 @@
             </div>
             <div class="card-body">
                 <p>Silakan pilih format yang diinginkan untuk mengekspor laporan:</p>
-                <a href="{{ route('export-laporan.excel') }}" class="btn btn-success">
-                    <i class="fas fa-file-excel"></i> Ekspor Ke Excel
+
+                <a href="{{ route('export-laporan.excel', ['role' => 'Teknisi Provisioning']) }}" class="btn btn-success">
+                    <i class="fas fa-file-excel"></i> Ekspor Teknisi Provisioning
+                </a>
+
+                <a href="{{ route('export-laporan.excel', ['role' => 'Teknisi Assurance']) }}" class="btn btn-success">
+                    <i class="fas fa-file-excel"></i> Ekspor Teknisi Assurance
                 </a>
             </div>
         </div>
@@ -56,7 +61,7 @@
                                 <th>Total Poin</th>
                                  <th>Target Poin HI</th> {{-- harian --}}
                                 <th>Target / Bulan (176)</th>
-                                <th>Produktivitas</th> ambil 
+                                <th>Produktivitas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,23 +70,28 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->kegiatan->count() }}</td>
                                     <td>{{ $user->kegiatan->sum('point') }}</td>
-                                    <td>203</td>
+                                    <td>{{ floor($user->kegiatan->sum('point') / 26) }}</td>
                                     <td>176</td>
                                     <td>
                                         @php
-                                            $productivity = $user->kegiatan->sum('point');
-                                            if ($productivity < 100) {
-                                                $status = 'Rendah';
-                                                $color = 'danger';
-                                            } elseif ($productivity < 176) {
-                                                $status = 'Sedang';
-                                                $color = 'warning';
-                                            } else {
-                                                $status = 'Tinggi';
-                                                $color = 'success';
-                                            }
-                                        @endphp
-                                        <span class="badge badge-{{ $color }}">{{ $status }}</span>
+                                        $totalPoint = $user->kegiatan->sum('point');
+                                        $totalHariKerja = 26; // Hari kerja dalam 1 bulan
+
+                                        // Total poin harian
+                                        $pointHarian = ceil($totalPoint / $totalHariKerja); // Pembulatan ke atas agar tidak hilang poin kecil
+
+                                        if ($pointHarian >= 8) {
+                                            $status = 'Tinggi';
+                                            $color = 'success';
+                                        } elseif ($pointHarian >= 1) {
+                                            $status = 'Sedang';
+                                            $color = 'warning';
+                                        } else {
+                                            $status = 'Rendah';
+                                            $color = 'danger';
+                                        }
+                                    @endphp
+                                    <span class="badge badge-{{ $color }}">{{ $status }}</span>
                                     </td>
                                 </tr>
                             @endforeach

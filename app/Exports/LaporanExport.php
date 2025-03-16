@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\KegiatanModel;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -10,11 +9,21 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class LaporanExport implements FromCollection, WithHeadings, WithMapping
 {
+    protected $role;
+
+    public function __construct($role = null)
+    {
+        $this->role = $role;
+    }
+
     public function collection()
     {
-        return User::where('role', '!=', 'Admin') // Cegah Admin masuk ke laporan
-        ->select('users.id', 'users.name')
-        ->withCount([
+        return User::where('role', '!=', 'Admin') // Hindari Admin
+            ->when($this->role, function ($query) {
+                return $query->where('role', $this->role);
+            })
+            ->select('users.id', 'users.name')
+            ->withCount([
                 'kegiatan as total_order',
                 'kegiatan as datin' => function ($query) { $query->where('jenis_wo', 'DATIN'); },
                 'kegiatan as digipos' => function ($query) { $query->where('jenis_wo', 'DIGIPOS'); },
@@ -36,7 +45,7 @@ class LaporanExport implements FromCollection, WithHeadings, WithMapping
             'Nama Teknisi',
             'Total Order',
             'DATIN', 'DIGIPOS', 'EKSPAN', 'INDIBIZ', 'PDA', 'MO', 'ORBIT', 'STB', 'DISMANT',
-            'Total Poin', 'Target Poin (203)', 'Target/Bulan (176)', 'Produktivitas'
+            'Total Poin', 'Target Poin HI', 'Target/Bulan (176)', 'Produktivitas'
         ];
     }
 
