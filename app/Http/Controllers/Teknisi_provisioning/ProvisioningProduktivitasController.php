@@ -12,11 +12,13 @@ class ProvisioningProduktivitasController extends Controller
     {
         if($request->input("tanggal_awal") && $request->input("tanggal_akhir")){
             // ini yang di filter
-            $data=KegiatanModel::whereBetween('tanggal', [$request->input("tanggal_awal"),$request->input("tanggal_akhir")])->where("jenis","Provisioning")->where("status_approve","Disetujui")->get(); 
+            $data=KegiatanModel::select('kegiatan.*', 'users.name')
+            ->join('users', 'users.id', '=', 'kegiatan.id_user')->whereBetween('tanggal', [$request->input("tanggal_awal"),$request->input("tanggal_akhir")])->where("jenis","Provisioning")->where("status_approve","Disetujui")->get(); 
     
         } else{
             // tidak di filter
-            $data=KegiatanModel::where("jenis","Provisioning")->where("status_approve","Disetujui")->get(); 
+            $data=KegiatanModel::select('kegiatan.*', 'users.name')
+            ->join('users', 'users.id', '=', 'kegiatan.id_user')->where("jenis","Provisioning")->where("status_approve","Disetujui")->get(); 
         }
         
         $total_point = $data->sum('point');
